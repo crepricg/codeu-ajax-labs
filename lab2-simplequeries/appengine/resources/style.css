@@ -9,12 +9,12 @@
 
 .box {
   border: 1px solid black;
-  height: 180px;
+  height: 140px;
   width: 180px;
   margin: auto;
 }
 
-.delay_button {
+.delay_button, .stop_button{
   height: 3em;
   margin: 10px auto;
   display: block;
@@ -34,5 +34,25 @@
 
 .yellow {
   background-color: yellow;
+}
+
+.olive {
+  background-color: olive;
+}
+
+.teal {
+  background-color: teal;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.aqua {
+  background-color: aqua;
+}
+
+.navy {
+  background-color: navy;
 }
 

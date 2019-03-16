@@ -1,37 +1,25 @@
-window.addEventListener('load', 
-  () => {
-    [].forEach.call(
-        document.querySelectorAll('.delay_button'), 
-        (el) => {
-          el.addEventListener('click', sendAjaxRequest);
-        });
-  }
-);
+// Initial setup for the buttons.
+let pageSetup =  () => {
+  [].forEach.call(
+       document.querySelectorAll('.delay_button'), 
+      (el) => {
+        el.addEventListener('click', sendAjaxRequest);
+      });
+  [].forEach.call(
+       document.querySelectorAll('.stop_button'), 
+      (el) => {
+        el.addEventListener('click', cancelTimer);
+      });
 
-let sendAjaxRequest = (e) => {
-  console.log(e);
-  let request_type = e.target.dataset.req;
-  let box = e.currentTarget.parentElement.querySelector('.box');
-  let button = e.currentTarget;
-  button.disabled = true;
-  let url = 'http://boxes.codeu-ajax-labs.appspot.com/send_delayed_response?delay=' + e.target.dataset.delay;
-  fetch(url,
-    { 
-      method: request_type,
-      //mode: 'no-cors',
-     // credentials: 'omit'
-    }).then(function(response) {
-      console.log(response);
-      return response.json();
-    }).then ((data) => {
-      console.log(data);
-      console.log("Adding class  " + data.color);
-      box.classList.add(data.color);
-      console.log(box);
-      setInterval(function () {
-        box.classList.toggle(data.color);
-        button.disabled = false;
-      }, e.target.dataset.delay * 1000);
-    });
 }
 
+// Sends a request to the server, to receive a new color.
+let sendAjaxRequest = (e) => {
+  console.log('Handling Event Send');
+}
+
+let cancelTimer = (e) => {
+  console.log('Handling Event Stop');
+}
+
+window.addEventListener('load', pageSetup); 

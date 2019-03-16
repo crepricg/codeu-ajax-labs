@@ -33,7 +33,7 @@ let sendAjaxRequest = (e) => {
 
   // Forming the request now. If GET the parameters go in the URL, if POST
   // They are added in the body of the request.
-  let url = '/send_delayed_response';
+  let url = 'http://boxes.codeu-ajax-labs.appspot.com/send_delayed_response';
   let request_init = {};
   if (request_type == 'get') {
     url += '?delay=' + request_delay;

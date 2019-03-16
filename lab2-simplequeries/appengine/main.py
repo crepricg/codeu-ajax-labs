@@ -19,15 +19,16 @@ import time
 import json
 
 class DelayHandler(webapp2.RequestHandler):
-    colors = ['blue', 'green', 'yellow', 'red']
+    colors = [
+      'blue', 'green', 'yellow', 'red', 
+      'olive', 'teal', 'purple', 'aqua', 'navy']
     def get(self):
         delay_secs = int(self.request.get("delay"))
-        time.sleep(delay_secs)
         new_color = DelayHandler.colors.pop(0)
         DelayHandler.colors.append(new_color)
         reply_obj = {
             "color": new_color,
-            "request_type": "GET",
+            "request_type": "get",
         }
         self.response.headers.add_header('Access-Control-Allow-Origin', '*')
         self.response.headers["Content-Type"] = "application/json"
@@ -35,12 +36,11 @@ class DelayHandler(webapp2.RequestHandler):
 
     def post(self):
         delay_secs = int(self.request.get("delay"))
-        time.sleep(delay_secs)
         new_color = DelayHandler.colors.pop(0)
         DelayHandler.colors.append(new_color)
         reply_obj = {
             "color": new_color,
-            "request_type": "POST",
+            "request_type": "post",
         }
         self.response.headers.add_header('Access-Control-Allow-Origin', '*')
         self.response.headers["Content-Type"] = "application/json"
