@@ -29,6 +29,7 @@ class DelayHandler(webapp2.RequestHandler):
             "color": new_color,
             "request_type": "GET",
         }
+        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
         self.response.headers["Content-Type"] = "application/json"
         self.response.write(json.dumps(reply_obj))
 
@@ -41,6 +42,7 @@ class DelayHandler(webapp2.RequestHandler):
             "color": new_color,
             "request_type": "POST",
         }
+        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
         self.response.headers["Content-Type"] = "application/json"
         self.response.write(json.dumps(reply_obj))
 

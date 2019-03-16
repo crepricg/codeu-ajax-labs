@@ -1,16 +1,19 @@
 // Dictionary to map selector value and sorting criteria.
-const options_to_criteria = {
+const sorting_params = {
   'by_pos' : {
     selector: '.billboard_pos',
-    numeric: true
+    numeric: true,
+    message: 'Sorted by billboard position',
   },
   'by_artist' : {
     selector: '.artist',
-    numeric: false
+    numeric: false,
+    message: 'Sorted by billboard artist',
   },
   'by_song' : {
     selector: '.song',
-    numeric: false
+    numeric: false,
+    message: 'Sorted by song title',
   }
 }
 
@@ -35,10 +38,13 @@ let sortSongs = (e) => {
   // sorting function, since we're not simply sorting the <li> items
   // alphabeticallly
   songs_array.sort((first, second) => {
-    return compareSongs(first, second, options_to_criteria[sorting_criterion]);
+    return compareSongs(first, second, sorting_params[sorting_criterion]);
   });
   clearList();
   rebuildList(songs_array);
+  let sorted_description =
+    sorting_params[sorting_criterion].message;
+  document.querySelector('#sorted_desc').innerText = sorted_description;
 }
 
 // Removes all elements from the LI
@@ -62,16 +68,16 @@ let rebuildList = (new_list) => {
   new_list.forEach((element) => {
     // Extract the fields for the song.
     let song_pos =
-      element.querySelector(options_to_criteria['by_pos'].selector).innerText;
+      element.querySelector(sorting_params['by_pos'].selector).innerText;
     let artist =
-      element.querySelector(options_to_criteria['by_artist'].selector).innerText;
+      element.querySelector(sorting_params['by_artist'].selector).innerText;
     let song =
-      element.querySelector(options_to_criteria['by_song'].selector).innerText;
+      element.querySelector(sorting_params['by_song'].selector).innerText;
     // Create a new LI item.
     let new_item =
       document.createElement('li');
     // Fill the HTML inside the LI element.
-    new_item.innerHTML =s
+    new_item.innerHTML =
       buildListItemHtml(song_pos, artist, song);
     // Add the element to the List.
     list.appendChild(new_item);
@@ -96,4 +102,4 @@ let compareSongs = (first, second, criterion) => {
 }
 
 // Initial setup.
-window.addEventListener('load', page_setup);
+window.addEventListener('load', pageSetup);
