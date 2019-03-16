@@ -17,15 +17,16 @@
 import webapp2
 import time
 import json
+import random
 
 class DelayHandler(webapp2.RequestHandler):
     colors = [
       'blue', 'green', 'yellow', 'red', 
       'olive', 'teal', 'purple', 'aqua', 'navy']
     def get(self):
-        delay_secs = int(self.request.get("delay"))
-        new_color = DelayHandler.colors.pop(0)
-        DelayHandler.colors.append(new_color)
+        delay_msecs = int(self.request.get("delay"))
+        time.sleep(delay_msecs/1000.0)
+        new_color = random.choice(DelayHandler.colors)
         reply_obj = {
             "color": new_color,
             "request_type": "get",
@@ -35,9 +36,9 @@ class DelayHandler(webapp2.RequestHandler):
         self.response.write(json.dumps(reply_obj))
 
     def post(self):
-        delay_secs = int(self.request.get("delay"))
-        new_color = DelayHandler.colors.pop(0)
-        DelayHandler.colors.append(new_color)
+        delay_msecs = int(self.request.get("delay"))
+        time.sleep(delay_msecs/1000.0)
+        new_color = random.choice(DelayHandler.colors)
         reply_obj = {
             "color": new_color,
             "request_type": "post",
