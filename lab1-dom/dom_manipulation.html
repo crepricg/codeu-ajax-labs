@@ -9,6 +9,11 @@
   <h1>My music library</h1>
   <h2><span id="sorted_desc">Not Sorted</h2>
   <hr>
+  <style>
+    #sorting_controls > * {
+      margin: .3em;
+    }
+  </style>
   <div id="sorting_controls">
     <span>Sort:</span>
     <select id="sort_selector">
@@ -19,8 +24,23 @@
     <button id="sort_btn">
       Go!
     </button>
+      <label for="chk_inverse"> Inverse </label>
+      <input type="checkbox" id="chk_inverse"/>
+    <button id="clear_btn">
+      Clear List!
+    </button>
   </div>
   <hr>
+
+
+  <style>
+    li {
+      margin: .3em;
+    }
+    button {
+      background-color: lightblue;
+    }
+  </style>
   <ul id="billboard">
     <li>
       <span class="billboard_pos">4</span> -
@@ -73,5 +93,45 @@
       <span class="song">Sicko Mode</span>
     </li>
   </ul>
+  <hr>
+
+  <style>
+    #add_song_form {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+    }
+    .form_entry {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: .3em;
+    }
+    .form_entry > button {
+      width: 50%;
+    }
+    .form_entry > input {
+      width: 60%;
+    }
+  </style>
+  <div id="add_song_form">
+    <div class="form_entry">
+      <button id="add_btn">
+        Add
+      </button>
+    </div>
+    <div class="form_entry">
+      <label for="new_song_title">Song Title</label>
+      <input type="text" id="new_song_title"/>
+    </div>
+    <div class="form_entry">
+      <label for="new_song_pos">Position</label>
+      <input type="number" id="new_song_pos"/>
+    </div>
+    <div class="form_entry">
+      <label for="new_song_artist">Artist</label>
+      <input type="text" id="new_song_artist"/>
+    </div>
+  </div>
 </body>
 </html>
