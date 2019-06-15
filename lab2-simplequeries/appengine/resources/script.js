@@ -5,12 +5,12 @@ let running_intervals = {};
 // Initial setup for the buttons.
 let pageSetup =  () => {
   [].forEach.call(
-       document.querySelectorAll('.delay_button'), 
+       document.querySelectorAll('.delay_button'),
       (el) => {
         el.addEventListener('click', sendAjaxRequest);
       });
   [].forEach.call(
-       document.querySelectorAll('.stop_button'), 
+       document.querySelectorAll('.stop_button'),
       (el) => {
         el.addEventListener('click', cancelTimer);
       });
@@ -61,25 +61,30 @@ let sendAjaxRequest = (e) => {
     // When the conversion to JSON is complete, analyze the reply and
     // start the flashing.
     (data) => {
-      console.log(data);
-      if (data.request_type !== request_type) {
-        // This is a check to make sure that your request used the correct
-        // method as specified in the request_type var.
-        console.log("Error, request type mismatch");
-      }
-      box.classList.add(data.color);
-      // Start the blinking.
-      let handler = setInterval(function () {
-        box.classList.toggle(data.color);
-      }, request_delay);
-      // We store the handler under a unique key identifying this box, so we
-      // can retrieve it later when the user clicks on STOP.
-      let key = request_type + " " + request_delay;
-      running_intervals[key] = handler;
-      // Execution is complete, let's re-enable the button that we disabled
-      // when we started the execution.
-      button.disabled = false;
+      blinkBox(box, data, request_type);
     });
+}
+
+let blinkBox = (box, data, request_type) => {
+   console.log(data);
+   if (data.request_type !== request_type) {
+     // This is a check to make sure that your request used the correct
+     // method as specified in the request_type var.
+     console.log("Error, request type mismatch");
+     return;
+   }
+   box.classList.add(data.color);
+   // Start the blinking.
+   let handler = setInterval(function () {
+     box.classList.toggle(data.color);
+   }, data.delay_msecs);
+   // We store the handler under a unique key identifying this box, so we
+   // can retrieve it later when the user clicks on STOP.
+   let key = request_type + " " + data.delay_msecs;
+   running_intervals[key] = handler;
+   // Execution is complete, let's re-enable the button that we disabled
+   // when we started the execution.
+   button.disabled = false;
 }
 
 let cancelTimer = (e) => {
@@ -98,4 +103,4 @@ let cancelTimer = (e) => {
   box.classList = ['box'];
 }
 
-window.addEventListener('load', pageSetup); 
+window.addEventListener('load', pageSetup);

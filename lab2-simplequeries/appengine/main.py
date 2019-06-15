@@ -21,36 +21,38 @@ import random
 
 class DelayHandler(webapp2.RequestHandler):
     colors = [
-      'blue', 'green', 'yellow', 'red', 
+      'blue', 'green', 'yellow', 'red',
       'olive', 'teal', 'purple', 'aqua', 'navy']
     def get(self):
-        delay_msecs = int(self.request.get("delay"))
+        delay_msecs = int(self.request.get('delay'))
         time.sleep(delay_msecs/1000.0)
         new_color = random.choice(DelayHandler.colors)
         reply_obj = {
-            "color": new_color,
-            "request_type": "get",
+            'color': new_color,
+            'request_type': "get",
+            'delay_msecs': delay_msecs,
         }
         self.response.headers.add_header('Access-Control-Allow-Origin', '*')
-        self.response.headers["Content-Type"] = "application/json"
+        self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps(reply_obj))
 
     def post(self):
-        delay_msecs = int(self.request.get("delay"))
+        delay_msecs = int(self.request.get('delay'))
         time.sleep(delay_msecs/1000.0)
         new_color = random.choice(DelayHandler.colors)
         reply_obj = {
-            "color": new_color,
-            "request_type": "post",
+            'color': new_color,
+            'request_type': 'post',
+            'delay_msecs': delay_msecs,
         }
         self.response.headers.add_header('Access-Control-Allow-Origin', '*')
-        self.response.headers["Content-Type"] = "application/json"
+        self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps(reply_obj))
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write(open("index.html").read())
+        self.response.write(open('index.html').read())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),

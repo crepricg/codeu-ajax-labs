@@ -1,12 +1,12 @@
 // Initial setup for the buttons.
 let pageSetup =  () => {
   [].forEach.call(
-       document.querySelectorAll('.delay_button'), 
+       document.querySelectorAll('.delay_button'),
       (el) => {
         el.addEventListener('click', sendAjaxRequest);
       });
   [].forEach.call(
-       document.querySelectorAll('.stop_button'), 
+       document.querySelectorAll('.stop_button'),
       (el) => {
         el.addEventListener('click', cancelTimer);
       });
@@ -22,4 +22,4 @@ let cancelTimer = (e) => {
   console.log('Handling Event Stop');
 }
 
-window.addEventListener('load', pageSetup); 
+window.addEventListener('load', pageSetup);

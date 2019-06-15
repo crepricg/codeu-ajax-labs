@@ -1,6 +1,7 @@
 runtime: python27
 api_version: 1
 threadsafe: yes
+service: boxes
 
 handlers:
 - url: /favicon\.ico
@@ -9,7 +10,7 @@ handlers:
 
 - url: /res
   static_dir: resources
-  
+
 - url: .*
   script: main.app
 

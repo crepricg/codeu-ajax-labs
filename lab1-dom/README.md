@@ -1,4 +1,3 @@
-
 # DOM Manipulation lab
 
 This lab will let you practice several key JS strategies to manipulate DOM
