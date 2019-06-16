@@ -18,8 +18,8 @@ tree. You will find this useful for implementing the next steps.
 
 ## Step 3 - Take a look at the live demo
 
-A live demo of what the completed code should do is [published]
-(http://lab1-dot-codeu-ajax-labs.appspot.com/) to give you a general idea of
+A live demo of what the completed code should do is [published](
+http://lab1-dot-codeu-ajax-labs.appspot.com/) to give you a general idea of
 how you should structure your implementation.
 
 You can also find the solution code in the repository, in the file
