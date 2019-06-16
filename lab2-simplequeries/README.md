@@ -1,4 +1,4 @@
-# Simple AJAX LAb
+# AJAX Lab
 
 This lab will let you practice with the JS `fetch` API, which is critical to
 create dynamic pages and single-page apps.
@@ -14,8 +14,8 @@ rest of the tasks easier.
 
 ## Step 3 - Take a look at the live demo
 
-A live demo of the completed lab is [published]
-(http://boxes.codeu-ajax-labs.appspot.com) to give you a general idea of the
+A live demo of the completed lab is [published](
+http://boxes.codeu-ajax-labs.appspot.com) to give you a general idea of the
 completed solution. You can also find the solutuon code in the file
 `script_solution.js`, but try not to look at it unless you are truly stuck.
 This is only ONE of the many possible solutions, try to implement your own!
@@ -29,8 +29,17 @@ POST request to our backend, located at:
 http://boxes.codeu-ajax-labs.appspot.com/send_delayed_response
 ```
 
-This handler takes both GET and POST requests and returns a JSON with the
-following format:
+This handler takes both GET and POST requests, with one parameter, `delay`,
+which should be set to `1000`, `5000`, `10000` based on which button is pressed.
+If you analyze the HTML file you should see that the buttons have each a data
+property defining which method should be used, and one defining the requested
+delay. Can you find out how to extract that value from the properties of the
+element?
+
+After sending the request (for which you should look at the `fetch` function,
+after properly building a new `Request` object), the server will wait for
+`delay` milliseconds and then send you back a response that contains a JSON
+with the following format:
 
 ```
 {
@@ -38,7 +47,6 @@ following format:
    'request_type': "get" or "post",
    'delay_msecs': <delay_msecs>,
 }
-
 ```
 
 Your JS code will receive this response, and start an interval function (check
