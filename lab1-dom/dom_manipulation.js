@@ -19,4 +19,4 @@ let sortSongs = (e) => {
 }
 
 // Initial setup.
-window.addEventListener('load', page_setup);
+window.addEventListener('load', pageSetup);
